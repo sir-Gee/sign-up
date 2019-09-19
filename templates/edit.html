@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <form action="/" method="post">
+      <table>
+          <tbody>
+            <tr>
+              <td>Username</td>
+              <td>
+                  <input name="username" type="text" placeholder="User name"/>
+                  <span class="error">
+                    {{errorUser}}
+                  </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Password</td>
+              <td>
+                  <input name="password" type="text" placeholder="Password"/>
+                  <span class="error">
+                    {{errorPass}}
+                  </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Verify password</td>
+              <td>
+                  <input name="verify" type="text" placeholder="Re-enter password">
+                  <span class="error">
+                    {{errorVerify}}
+                  </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td>
+                  <input name="email" type="text" placeholder="name@gmail.com"/>
+                  <span class="error">
+                    {{errorEmail}}
+                  </span>
+              </td>
+             </tr>
+          </tbody>
+      </table>
+        <input type="submit" class="btn btn-primary">
+    </form>
+
+
+{% endblock %}
