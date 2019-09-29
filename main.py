@@ -64,7 +64,9 @@ def index():
         if verify != password:
             errorVerify = "Passwords dont match"
 
-        if not verify_email(email):
+        if email == "":
+            pass
+        elif not verify_email(email):
             errorEmail = "email is not correct"
 
         if not errorUser and not errorPass and not errorVerify and not errorEmail:
