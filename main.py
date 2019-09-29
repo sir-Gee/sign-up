@@ -10,17 +10,23 @@ users = []
 
 
 def verify_email(email):
-    pattern = "[0-9A-Za-z]+@[a-z]+.com"
+    pattern = "[0-9A-Za-z]+@[a-z]+.[a-z]+"
     result = re.match(pattern, email)
     if result:
         return True
 
 
 def verify_username(username):
-    pattern = "[0-9A-Za-z]+"
+    pattern = "[0-9A-Za-z]{3,20}?"
     result = re.match(pattern, username)
     if result:
         return True
+
+def check_whitespace(username):
+    for letter in username:
+        if letter.isspace():
+            return False
+    return True
 
 
 @app.route("/registered", methods=['POST', 'GET'])
@@ -45,8 +51,12 @@ def index():
 
         if len(username) == 0:
             errorUser = "Username is required"
+        elif len(username) < 3 or len(username) > 20:
+            errorUser = "Username is less than 3 symbols or more than 20"
+        elif not check_whitespace(username):
+            errorUser = "Username should NOT have any spaces"
         elif not verify_username(username):
-            errorUser = "You cannot use special symbols"
+            errorUser = "Your username is not correct"
 
         if len(password) == 0:
             errorPass = "Password is required"
