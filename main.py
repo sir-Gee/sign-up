@@ -60,6 +60,8 @@ def index():
 
         if len(password) == 0:
             errorPass = "Password is required"
+        elif len(password) < 3 or len(password) > 20:
+            errorPass = "Password is less than 3 symbols or more than 20"
 
         if verify != password:
             errorVerify = "Passwords dont match"
