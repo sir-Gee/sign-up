@@ -38,6 +38,7 @@ def register():
 def index():
     username = ""
     password = ""
+    email = ""
     errorUser = ""
     errorPass = ""
     errorVerify = ""
@@ -60,6 +61,8 @@ def index():
 
         if len(password) == 0:
             errorPass = "Password is required"
+        elif not check_whitespace(password):
+            errorPass = "Password should NOT have any spaces"
         elif len(password) < 3 or len(password) > 20:
             errorPass = "Password is less than 3 symbols or more than 20"
 
@@ -76,7 +79,7 @@ def index():
             return redirect('/registered?username={username}'.format(username=username))
 
     return render_template('edit.html', errorPass=errorPass, errorUser=errorUser, errorVerify=errorVerify,
-                           errorEmail=errorEmail)
+                           errorEmail=errorEmail, username_entered=username, email_entered=email)
 
 
 @app.route("/whosregistered")
